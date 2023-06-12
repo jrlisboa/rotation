@@ -89,10 +89,13 @@ class _RotatorFollowerState extends State<RotatorFollower> {
         ? _screenWidth
         : -_screenWidth;
 
+    final double heightMultiplier = height > 0 ? _mouseY / height : 0;
+    final double widthMultiplier = width > 0 ? _mouseX / width : 0;
+
     Matrix4 transform = Matrix4.identity()
       ..setEntry(3, 2, _getDistortion())
-      ..rotateX(1 * ((_mouseY) / height))
-      ..rotateY(1 * ((_mouseX) / width));
+      ..rotateX(1 * heightMultiplier)
+      ..rotateY(1 * widthMultiplier);
 
     return Transform(
       transform: transform,
