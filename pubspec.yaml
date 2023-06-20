@@ -1,10 +1,12 @@
 name: rotation
 description: Provide easy features to produce transform behaviours.
-version: 0.0.1
-homepage:
+version: 0.0.2
+homepage: https://github.com/jrlisboa/rotation
+documentation: https://github.com/jrlisboa/rotation
+repository: https://github.com/jrlisboa/rotation
 
 environment:
-  sdk: '>=3.1.0-189.0.dev <4.0.0'
+  sdk: '>=2.18.2 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:

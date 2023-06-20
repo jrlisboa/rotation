@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rotation/src/rotator_follower.dart';
+import 'package:rotation/rotation.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,25 +18,59 @@ class MyApp extends StatelessWidget {
 }
 
 /// Example parallax animation
-class Example extends StatelessWidget {
+class Example extends StatefulWidget {
   const Example({Key? key}) : super(key: key);
+
+  @override
+  State<Example> createState() => _ExampleState();
+}
+
+class _ExampleState extends State<Example> {
+  RotatorFlipState _flipState = RotatorFlipState.showFirst;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: RotatorFollower(
-        child: Center(
-          child: Container(
-            height: 200,
-            width: 200,
-            color: Colors.blue,
-            alignment: Alignment.center,
-            child: Text(
-              'Hello World',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 50,
-                color: Colors.white,
+      body: GestureDetector(
+        onTap: () {
+          setState(() {
+            _flipState == RotatorFlipState.showFirst
+                ? _flipState = RotatorFlipState.showSecond
+                : _flipState = RotatorFlipState.showFirst;
+          });
+        },
+        child: RotatorFlip(
+          duration: const Duration(milliseconds: 400),
+          flipState: _flipState,
+          firstChild: Center(
+            child: Container(
+              height: 200,
+              width: 200,
+              color: Colors.blue,
+              alignment: Alignment.center,
+              child: Text(
+                'Hello World 1',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 50,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          secondChild: Center(
+            child: Container(
+              height: 200,
+              width: 200,
+              color: Colors.red,
+              alignment: Alignment.center,
+              child: Text(
+                'Hello World 2',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 50,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),

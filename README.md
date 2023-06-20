@@ -1,30 +1,39 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
 # Rotation
 
 A comprehensive Flutter package designed to bring easy and versatile rotational transformations to your widgets. Rotation offers features such as mouse position tracking and widget flip animation. You can rely on Rotation to make your Flutter applications more dynamic and engaging.
 
+## RotatorFlip Widget
+
+The `RotatorFlip` widget is a Flutter widget that allows you to create flip animations between two child widgets.
+
+![Rotator Flip example](https://github.com/jrlisboa/rotation/blob/main/assets/rotator_flip.gif?raw=true)
+
+```dart
+RotatorFlip(
+  firstChild: Container(
+    width: 100,
+    height: 100,
+    color: Colors.blue,
+  ),
+  secondChild: Container(
+    width: 100,
+    height: 100,
+    color: Colors.red,
+  ),
+  duration: Duration(seconds: 1),
+  flipState: RotatorFlipState.showFirst,
+  direction: RotatorFlipDirection.horizontal,
+)
+```
+
+In this example, the `RotatorFlip` widget is used to create a flip animation between a blue `Container` and a red `Container`. The `duration` parameter is used to set the duration of the flip animation to 1 second. The `flipState` parameter is used to set the initial state of the flipper to `RotatorFlipState.showFirst`, which means that the blue `Container` is visible. The `direction` parameter is used to set the direction of the flip animation to `RotatorFlipDirection.horizontal`, which means that the flip animation will be a horizontal flip.
 
 ## RotatorFollower Widget
 
-The `RotatorFollower` widget is a Flutter widget that can be used to rotate a child widget based on the position of the mouse cursor. The widget has two enums: `FollowerDistorion` and `FollowBehavior`. `FollowerDistorion` is used to specify the amount of distortion to apply to the rotation. It has three values: `none`, `light`, and `heavy`. `FollowBehavior` is used to specify the behavior of the rotation. It has two values: `normal` and `reverse`. 
+The `RotatorFollower` widget is a Flutter widget that can be used to rotate a child widget based on the position of the mouse cursor.
 
-![Rotator Follower example](assets/rotator_follower.gif)
 
-## Usage
-
-To use the `RotatorFollower` widget, simply create an instance of the widget and pass in the child widget to be rotated as the `child` parameter. You can also specify the amount of distortion to apply to the rotation using the `distorion` parameter and the behavior of the rotation using the `behavior` parameter.
+![Rotator Follower example](https://github.com/jrlisboa/rotation/blob/main/assets/rotator_follower.gif?raw=true)
 
 ```dart
 RotatorFollower(
@@ -42,70 +51,8 @@ RotatorFollower(
       ),
     ),
   ),
+  distorion: FollowerDistorion.light,
+  behavior: FollowBehavior.reverse,
 )
 ```
-
-## Parameters
-
-### `child`
-
-The widget to be rotated.
-
-### `distorion`
-
-The amount of distortion to apply to the rotation. `none` will emulate the 3D rotation appearance. `light` and `heavy` will create distortions in the edges of the widget.
-
-### `behavior`
-
-The behavior of the rotation. `normal` will rotate the widget in the direction of the mouse. `reverse` will rotate the widget in the opposite direction. Defaults to `normal`.
-
-## Example
-
-```dart
-import 'package:flutter/material.dart';
-import 'package:rotator_follower/rotator_follower.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'RotatorFollower Demo',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('RotatorFollower Demo'),
-        ),
-        body: Center(
-          child: RotatorFollower(
-            distorion: FollowerDistorion.light,
-            behavior: FollowBehavior.reverse,
-            child: Container(
-              width: 200,
-              height: 200,
-              color: Colors.blue,
-              child: Center(
-                child: Text(
-                  'Hello, World!',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-```
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
+In this example, the `RotatorFollower` widget is used to rotate a blue `Container` with a centered `Text` widget. The `distorion` parameter is used to specify the amount of distortion to apply to the rotation, which is set to `FollowerDistorion.light`. The `behavior` parameter is used to specify the behavior of the rotation, which is set to `FollowBehavior.reverse`.
